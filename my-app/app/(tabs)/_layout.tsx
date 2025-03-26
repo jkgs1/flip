@@ -3,7 +3,7 @@ import {FontAwesome} from "@expo/vector-icons";
 
 export default function TabLayout(){
     return (
-        <Tabs screenOptions={{tabBarActiveTintColor: "blue"}}>
+        <Tabs screenOptions={{tabBarActiveTintColor: "red"}}>
             {<Tabs.Screen
                 name="index"
                 options={{
@@ -13,11 +13,19 @@ export default function TabLayout(){
                 }}
             />}
             {<Tabs.Screen
-                name="(notes)"
+                name="notes"
                 options={{
-                    title: 'Notes',
+                    title: 'Files',
                     headerShown: false,
-                    tabBarIcon: ({ color }) => <FontAwesome size={28} name="sticky-note-o" color={color} />,
+                    tabBarIcon: ({ color }) => <FontAwesome size={28} name="file-o" color={color} />,
+                }}
+            />}
+            {<Tabs.Screen
+                name="edit"
+                options={{
+                    title: "Edit",
+                    headerShown: false,
+                    tabBarIcon: ({ color }) => <FontAwesome size={28} name="pencil-square-o" color={color}/>
                 }}
             />}
             {<Tabs.Screen
@@ -28,7 +36,6 @@ export default function TabLayout(){
                     tabBarIcon: ({ color }) => <FontAwesome size={28} name="cog" color={color} />,
                 }}
             />}
-
         </Tabs>
     )
 }

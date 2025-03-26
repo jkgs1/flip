@@ -1,6 +1,25 @@
 import * as FileSystem from 'expo-file-system';
+import { Platform } from 'react-native';
 
 const NOTES_DIR = FileSystem.documentDirectory + 'notes/';
+
+
+{/* Web fallback using localStorage */}
+const getWebFileInfo = async (path) => {
+    const content = localStorage.getItem(path);
+    return {
+        exists: content !== null,
+        uri: path,
+        size: content?.length || 0,
+    };
+};
+
+const getInfoAsync = (path) => {
+    if (Platform.OS === 'web') {
+        return getWebFileInfo(path);
+    }
+    return FileSystem.getInfoAsync(path);
+};
 
 const ensureDirExists = async () => {
     const dirInfo = await FileSystem.getInfoAsync(NOTES_DIR);
